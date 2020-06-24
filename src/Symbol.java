@@ -34,9 +34,6 @@ public class Symbol {
             if (r.name().equals(r1) || r.name().equals(r2)) {
                 checkResult = true;
             }
-            else if (!r.name().equals(r1)){
-                 checkResult = false;
-            }
         }
         return checkResult;
     }
