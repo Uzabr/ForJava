@@ -15,10 +15,6 @@ public enum RomeNumbers {
     public int getNumbers(){
         return numbers;
     }
-    public static List<RomeNumbers> valuesOfRomeNumbers(){
-        return Arrays.stream(values())
-                .sorted(Comparator.comparing((RomeNumbers e ) -> e.numbers))
-                .collect(Collectors.toList());
-    }
+    
 
 }

@@ -1,41 +1,56 @@
+import javafx.scene.input.RotateEvent;
+
 import java.util.ArrayList;
 
 public class Symbol {
     public void  terminate(String text) throws Exception {
         int c = 0, d = 0;
+
             if (checkRome(text)) {
                 c = (int) calculateRomeNumbers(text).get(0);
                 d = (int) calculateRomeNumbers(text).get(1);
-                doSomething(text, c, d);
-            }
-            else if (!checkRome(text)) {
+                int value = doSomething(text, c, d);
+                System.out.println(changeValueToName(value));
+            } else  {
                 try {
                     int a = (int) getNumbers(text).get(0);
                     int b = (int) getNumbers(text).get(1);
-                    doSomething(text, a, b);
+                    System.out.println(doSomething(text, a, b));
                 }catch (Exception e){
                     System.out.println("You've entered wrong statement");
                 }
+            }
+        }
 
+        public static String changeValueToName(int a){
+                RomeNumbers[] romeValues = RomeNumbers.values();
+                String name = "";
+            for (RomeNumbers rom: romeValues) {
+                if (a == rom.getNumbers()){
+                    name = rom.name();
             }
 
-
-
         }
-    public static boolean checkRome(String text){
+            return name;
+    }
+    public static boolean checkRome(String text) {
         RomeNumbers[] rom = RomeNumbers.values();
         String str = text.replaceAll("[+*-/]", " ");
         String str2 = str.replaceAll("( )+", " ");
         int index = str2.indexOf(" ");
-        boolean checkResult = false;
+        boolean checkResult = false ;
         String r1 = str2.substring(0, index);
         String r2 = str2.substring(index + 1);
-        for (RomeNumbers r: rom) {
-            if (r.name().equals(r1) || r.name().equals(r2)) {
+        for (RomeNumbers r : rom) {
+            if (r.name().equals(r1)) {
                 checkResult = true;
             }
+
         }
-        return checkResult;
+
+
+            return checkResult;
+
     }
 
     //проверим если в тексте мат выражения и выполняем соответсвующую операцию
@@ -58,7 +73,6 @@ public class Symbol {
             result = operations.plus(a, b);
 
         }
-        System.out.println(result);
 
         return result;
     }
@@ -67,9 +81,11 @@ public class Symbol {
     // получаем числы из текста
     public static ArrayList getNumbers(String text){
         ArrayList<Integer> list = new ArrayList<>();
-        String nettext =  text.replaceAll("[*-+/ ]", "");
-        int a = Integer.parseInt(String.valueOf(nettext.charAt(0)));
-        int b = Integer.parseInt(String.valueOf(nettext.charAt(1)));
+        String nettext =  text.replaceAll("[*+-/]", "");
+        String str = nettext.replaceAll("( )+", " ");
+        int index = str.indexOf(" ");
+        int a = Integer.parseInt(str.substring(0, index));
+        int b = Integer.parseInt(str.substring(index + 1));
         list.add(a);
         list.add(b);
         return list;
@@ -96,7 +112,9 @@ public class Symbol {
             if (rom2.name().equals(r2)){
                 secondRomeNumber = rom2.getNumbers();
             }
+
         }
+
         romeValues.add(firstRomeNumber);
         romeValues.add(secondRomeNumber);
         return romeValues;
