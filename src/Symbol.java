@@ -79,7 +79,7 @@ public class Symbol {
 
 
     // получаем числы из текста
-    public static ArrayList getNumbers(String text){
+    public static ArrayList<Integer> getNumbers(String text){
         ArrayList<Integer> list = new ArrayList<>();
         String nettext =  text.replaceAll("[*+-/]", "");
         String str = nettext.replaceAll("( )+", " ");
@@ -91,7 +91,7 @@ public class Symbol {
         return list;
     }
     //список, возврашает занвчение enum
-    public static ArrayList calculateRomeNumbers(String  text){
+    public static ArrayList<Integer> calculateRomeNumbers(String  text){
         RomeNumbers[] romeNumbers = RomeNumbers.values();
         ArrayList<Integer> romeValues = new ArrayList<>();
         //удаляем символы
