@@ -1,20 +1,21 @@
 import javafx.scene.input.RotateEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Symbol {
     public void  terminate(String text) throws Exception {
         int c = 0, d = 0;
 
             if (checkRome(text)) {
-                c = (int) calculateRomeNumbers(text).get(0);
-                d = (int) calculateRomeNumbers(text).get(1);
+                c =  calculateRomeNumbers(text).get(0);
+                d =  calculateRomeNumbers(text).get(1);
                 int value = doSomething(text, c, d);
                 System.out.println(changeValueToName(value));
             } else  {
                 try {
-                    int a = (int) getNumbers(text).get(0);
-                    int b = (int) getNumbers(text).get(1);
+                    int a =  getNumbers(text).get(0);
+                    int b =  getNumbers(text).get(1);
                     System.out.println(doSomething(text, a, b));
                 }catch (Exception e){
                     System.out.println("You've entered wrong statement");
@@ -102,7 +103,7 @@ public class Symbol {
         String r2 = str2.substring(index +1);
         int firstRomeNumber = 0;
         int secondRomeNumber = 0;
-        //проходим по перечислению и сравним имя с текстамии r1, r2
+        //проходим по перечислению и сравним имя с текстами r1, r2
         for (RomeNumbers rom : romeNumbers){
             if (rom.name().equals(r1)){
                 firstRomeNumber = rom.getNumbers();
